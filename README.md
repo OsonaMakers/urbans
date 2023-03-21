@@ -39,6 +39,10 @@ docker compose -f "mqtt_broker/docker-compose.yml" up -d --build
 
 ```bash
 docker exec -it broker-mqtt sh
-nano /mosquitto/config/password.txt # Afegir user:password
-mosquitto_passwd -U /mosquitto/config/password.txt
+mosquitto_passwd -b /mosquitto/config/password.txt user password
+```
+
+### Eliminar usuari i password
+```bash
+mosquitto_passwd -D passwordfile user
 ```
