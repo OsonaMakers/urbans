@@ -46,3 +46,6 @@ mosquitto_passwd -b /mosquitto/config/password.txt user password
 ```bash
 mosquitto_passwd -D passwordfile user
 ```
+
+### Securització MQTT
+http://www.steves-internet-guide.com/mqtt-security-mechanisms/
