@@ -2,17 +2,13 @@ import logging
 import random
 import string
 from os import getenv
-from dotenv import load_dotenv
 import paho.mqtt.client as paho
 from paho import mqtt
-
-load_dotenv()
 
 
 class MQTTClient:
     def __init__(self, client_id=None, keepalive=60):
         self._validateEnv()
-        self._debug()
         self.broker = getenv("MQTT_BROKER")
         self.port = int(getenv("MQTT_PORT", 1883))
         self.username = getenv("MQTT_USERNAME")
@@ -46,11 +42,6 @@ class MQTTClient:
     def _generateRandomId(self, length=10):
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(length)) + '-mqqtClient'
-
-    def _debug(self):
-        debug_level = logging.WARNING if getenv(
-            'ENV') == 'production' else logging.DEBUG
-        logging.basicConfig(level=debug_level)
 
     def on_connect(self, *args):
         logging.debug(
@@ -92,3 +83,6 @@ class MQTTClient:
 
     def loop_forever(self):
         self.client.loop_forever()
+
+    def setOnMessage(self, cb):
+        self.client.on_message = cb

@@ -1,5 +1,6 @@
 ### Mosquito ###
-mqtt_broker/mosquito/data/*
+mqtt_broker/data/*
+mqtt_broker/log/*
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

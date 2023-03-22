@@ -24,15 +24,15 @@ cp -ax .env.example .env
 python3 -m venv .venv
 source .venv/bin/activate
 pip3 install -r requirements.txt
-python3 app.py
+python3 mqtt_client/app.py
 ```
 
 > Omplir el arxiu .env amb les dades del broker MQTT.
 
-### Broker
+### Broker && DDBB
 
 ```bash
-docker compose -f "mqtt_broker/docker-compose.yml" up -d --build
+docker compose -f "docker-compose.yml" up -d --build
 ```
 
 #### Crear usuari i password mqtt
@@ -44,8 +44,14 @@ mosquitto_passwd -b /mosquitto/config/password.txt user password
 
 ### Eliminar usuari i password
 ```bash
+docker exec -it broker-mqtt sh
 mosquitto_passwd -D passwordfile user
 ```
 
 ### Securització MQTT
 http://www.steves-internet-guide.com/mqtt-security-mechanisms/
+
+
+## DB
+
+Administració: [http://127.0.0.1:8081/](http://127.0.0.1:8081/)
